@@ -1,0 +1,2 @@
+const BASE_URL ='http://39.105.38.10:8081/top250';
+const BASE_TIMEOUT=5000;
