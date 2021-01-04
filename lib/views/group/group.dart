@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learnflutter_git/components/star_rating.dart';
 
 class Group extends StatelessWidget {
   @override
@@ -8,7 +9,10 @@ class Group extends StatelessWidget {
         title: Text('小组'),
       ),
       body: Center(
-        child: Text('小组',style: TextStyle(fontSize: 50),),
+        child: StarRating(
+          rating: 9,
+
+        ),
       ),
     );
   }

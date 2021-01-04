@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:learnflutter_git/models/home_model.dart';
 import 'package:learnflutter_git/network/http_request.dart';
+import 'package:learnflutter_git/views/home/childCpns/movie_list_item.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -43,6 +44,7 @@ class _HomeBodyState extends State<HomeBody> {
       }
       //print(movies);
       setState(() {
+        //实时渲染
         this.movieItems=movies;
       });
 
@@ -54,11 +56,11 @@ class _HomeBodyState extends State<HomeBody> {
       child: ListView.builder(
           itemCount: movieItems.length,
           itemBuilder: (BuildContext context, int index) {
-            return ListTile(
-              leading: Image.network(movieItems[index].imageURL),
-              title: Text(movieItems[index].title),
-            );
+            return MovieListItem(movieItems[index]);//显示
           }),
     );
   }
 }
+
+
+

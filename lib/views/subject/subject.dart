@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learnflutter_git/components/dashed_line.dart';
 
 class Subject extends StatelessWidget {
   @override
@@ -8,7 +9,16 @@ class Subject extends StatelessWidget {
         title: Text('书影集'),
       ),
       body: Center(
-        child: Text('书影集',style: TextStyle(fontSize: 50),),
+        child: Container(
+          width: 200,
+          height: 200,
+          child: DashedLine(
+            axis: Axis.horizontal,
+            dashedHeight: 1,
+            dashedWidth: 8,
+            count: 12,
+          ),
+        ),
       ),
     );
   }
