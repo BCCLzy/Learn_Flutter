@@ -7,6 +7,12 @@
  * @LastEditTime: 2020-12-31 10:52:49
  */
 import 'package:flutter/material.dart';
+import 'package:learnflutter_git/components/tabbar_item.dart';
+import 'package:learnflutter_git/views/group/group.dart';
+import 'package:learnflutter_git/views/home/home.dart';
+import 'package:learnflutter_git/views/mall/mall.dart';
+import 'package:learnflutter_git/views/profile/profile.dart';
+import 'package:learnflutter_git/views/subject/subject.dart';
 
 void main() => runApp(Myapp());
 
@@ -38,41 +44,38 @@ class MyStackPageState extends State<MyStackPage>{
   var _currentIndex=0;
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+    Map<String,String> items ={
+     "icon":"home","title":"首页",
+      "icon":"home","title":"首页",
+      "icon":"group","title":"小组",
+      "icon":"mall","title":"市集",
+      "icon":"profile","title":"我的",
+    };
+
+
+  @override
   Widget build(BuildContext context) {
     // TODO: implement build
     //throw UnimplementedError();
     return Scaffold(
-      appBar: AppBar(
-        title: Text('豆瓣APP'),
-      ),
       bottomNavigationBar: BottomNavigationBar(
         //selectedItemColor: Colors.green,//选中的颜色
         currentIndex: _currentIndex,//点击选中的导航bar
         // selectedFontSize: 12,//选中的字体颜色
-        // unselectedFontSize: 10,//为选中的字体颜色
+        unselectedFontSize: 14,//为选中的字体颜色
+        type: BottomNavigationBarType.fixed,//固定底部导航栏，否则超过四个不显示文字
         items:[
-          BottomNavigationBarItem(
-            icon: Stack(
-              children: [
-                Icon(Icons.home),
-                Positioned(
-                  top:0,
-                  right: 0,
-                  child: Container(
-                    color: Colors.red,
-                    width: 15,
-                    alignment: Alignment(0,0),
-                    child: Text('7',style: TextStyle(color: Colors.white),),
-                  ),
-                ),
-              ],
-            ),
-            title: Text('首页'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.category),
-            title: Text('分类'),
-          ),
+
+          TabBarItem('home', '首页'),
+          TabBarItem('subject', '书影集'),
+          TabBarItem('group', '小组'),
+          TabBarItem('mall', '市集'),
+          TabBarItem('profile', '我的'),
         ],
         onTap: (int index){
           setState(() {//渲染
@@ -80,7 +83,19 @@ class MyStackPageState extends State<MyStackPage>{
           });
         },
       ),
-      body: Text('Hello world'),
+      body: IndexedStack(
+        index: _currentIndex,
+        children: [
+          Home(),
+          Subject(),
+          Group(),
+          Mall(),
+          Profile(),
+        ],
+      ),
     );
   }
 }
+
+
+
